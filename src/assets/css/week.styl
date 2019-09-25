@@ -1,0 +1,151 @@
+@import './toRem.styl'
+.week-warp{
+    .week_top{
+        font-size: toRem(12)
+        width: 100%;
+        table-layout:fixed;
+    }
+    tr{
+        font-size: toRem(10)
+        height toRem(40)
+    }
+    tr:first-child{
+        background-color: #E4EEF4;
+    }
+    td{
+        font-size: toRem(10)
+        text-align: center
+    }
+    td:first-child{
+        background-color: #E4EEF4;
+    }
+}
+.warn_warp{
+    .warn-box{
+        box-sizing border-box;
+        height 100%
+        border: toRem(1) solid #EBEBEB;
+        .warn_top{
+            box-sizing border-box;
+            height toRem(50)
+            display: flex;
+            align-items: center
+            color: #B2B7BF
+            font-size: toRem(16)
+            background-color: #EFF5FB
+        }
+        .warn_time{
+            margin-left: toRem(20)
+            width 30%;
+        }
+        .warn_content{
+            width 70%;
+        }
+        .warn_item{
+            box-sizing border-box;
+            height toRem(50)
+            display: flex;
+            align-items: center
+            color: #B2B7BF
+            font-size: toRem(16)
+            border-bottom: toRem(1) solid #EBEBEB;
+        }
+    }
+}
+.set_warp{
+    
+    .set_top{
+        padding:0 toRem(100)
+        box-sizing border-box;
+        height 100%
+        border: toRem(1) solid #888888;
+        
+    }
+    .set_top>li:not(:last-child){
+        border-bottom: toRem(1) solid #DADADA;
+    }
+    .set_top>li{
+        display: flex
+        padding: toRem(30) 0
+    }
+    .calendar_left{
+        display: flex
+        justify-content: center
+        width: 10%
+        font-size: toRem(16)
+    }
+    .calendar_r{
+        width: 90%
+    }
+    .calendar_r_t{
+        height toRem(30)
+        border-bottom: toRem(1) solid #DADADA;
+        display: flex
+        font-size: toRem(16)
+        margin-bottom: toRem(20)
+    }
+    .calendar_r_t>p{
+        width: 33.3%
+        color: #A7A7A7
+    }
+    .check_box{
+        display: flex;
+        align-items: center
+        justify-content: center
+        border: toRem(1) solid #888888;
+        width toRem(20)
+        height toRem(20)
+    }
+    .calendar_r_detil{
+        margin-bottom: toRem(16)
+        display: flex
+        align-items: center
+    }
+    .check_gou{
+        width toRem(20)
+        height toRem(20)
+    }
+    .check_box_phone{
+         border: toRem(1) solid #888888;
+        font-size: toRem(16)
+        border-radius: toRem(10);
+        background-color: #F6F6F6
+        padding: toRem(4) toRem(10)
+
+    }
+    .warn-phone{
+        margin-left: toRem(8)
+        color: #A0A0A0
+    }
+    p{
+        margin-left: toRem(12)
+        display: flex
+        align-items: center
+        font-size: toRem(16)
+    }
+    .color-f{
+        width toRem(16)
+        height toRem(16)
+        background-color: red
+    }
+    .color_y{
+        width toRem(16)
+        height toRem(16)
+        background-color: #F3C722
+    }
+    .color-rl{
+        width toRem(16)
+        height toRem(16)
+        background-color: #ACACAC
+    }
+    .detil,.share,.set{
+        color #1E5494  
+        font-size: toRem(16)
+    }
+    .calendar_r_detil_box>div{
+        width: 33.3%
+    }
+    .calendar_r_detil_box{
+        display: flex;
+    }
+}
