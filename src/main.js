@@ -2,23 +2,18 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import "babel-polyfill"
 import Vue from 'vue'
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
 import { Api as AA, Url } from '@/assets/js/api.js';
 import Axios from 'axios';
 import './assets/css/common.styl';
 
-// 引入公共组件
-import { Switch, MessageBox, Popup, Button, Radio, Toast } from 'mint-ui';
+Vue.use(ElementUI)
+
 let Api = AA;
-// 注册公共组件
-Vue.component(Switch.name, Switch);
-Vue.component(Popup.name, Popup);
-Vue.component(Button.name, Button);
-Vue.component(Radio.name, Radio);
-Vue.component(Toast.name, Toast);
+
 
 Vue.config.productionTip = false;
 

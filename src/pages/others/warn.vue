@@ -39,15 +39,197 @@
                         <li class="warn_content">内容</li>
                     </ul>
                     <ul class="warn_bd">
-                        <li v-for="(item,index) in warnArr" :key="index" class="warn_item">
+                        <li v-for="(item,index) in warnArr" :key="index"  :class="['warn_item',index==0?'bgclass':'']">
                             <div class="warn_time">{{item.time}}</div>
                             <div class="warn_content">{{item.content}}</div>
                         </li>
                     </ul>
             </div>
         </div>
+        <div v-if="dilogShow==true" class="popup_warp">
+            <div class="top">
+                <p class="title">新建事件</p>
+                <p @click="closeDilog(1)" class="delete_warp">
+                    <img :src="del1" >
+                </p>
+                <!-- <p class="del_warp">
+                    <img :src="del" >
+                </p> -->
+            </div>
+            <div class="popup_content ">
+                <div class="popup_item">
+                    <el-input v-model="input1" placeholder="请输入内容"></el-input>
+                </div>
+                <div class="popup_item">
+                    <p class="popup_item">
+                    <em class="lable">开始：</em>
+                    <el-date-picker
+                    v-model="startDate"
+                    type="date"
+                    placeholder="选择日期"
+                    format="yyyy 年 MM 月 dd 日">
+                    </el-date-picker>
+                    <el-time-select
+                    v-if="allTimeShow"
+                    class="startTime"
+                    v-model="startTime"
+                    :picker-options="{
+                        start: '08:30',
+                        step: '00:15',
+                        end: '18:30'
+                    }"
+                    placeholder="选择时间">
+                    </el-time-select>
+                    </p>
+                </div>
+                <div v-if="endTimeShow" class="popup_item">
+                    <p class="popup_item">
+                    <em class="lable">结束：</em>
+                    <el-date-picker
+                    v-model="endDate"
+                    type="date"
+                    placeholder="选择日期"
+                    format="yyyy 年 MM 月 dd 日">
+                    </el-date-picker>
+                    <el-time-select
+                    v-if="allTimeShow"
+                    class="endTime"
+                    v-model="endTime"
+                    :picker-options="{
+                        start: '08:30',
+                        step: '00:15',
+                        end: '18:30'
+                    }"
+                    placeholder="选择时间">
+                    </el-time-select>
+                    </p>
+                </div>
+                <div class="popup_item">
+                    <div class="popup_item">
+                    <em class="lable"></em>
+                    <div class="check-item">
+                        <p @click="allTimeShowBtn()" class="check-box">
+                        <img v-if="allTimeShow" class="gou" :src="gou">
+                        </p>
+                        <p  class="lable_text">全天</p>
+                    </div>
+                    <div class="check-item">
+                        <p @click="endTimeShowBtn()"  class="check-box">
+                            <img v-if="endTimeShow" class="gou" :src="gou">
+                        </p>
+                        <p class="lable_text">结束时间</p>
+                    </div>
+                    <div class="check-item">
+                        <p class="check-box">
+                        <img class="gou" :src="gou">
+                        </p>
+                        <p class="lable_text">农历</p>
+                    </div>
+                    </div>
+                </div>
+                <div class="popup_item">
+                    <div class="popup_item">
+                    <em class="lable">重复：</em>
+                    <div class="check-item">
+                        <p class="check-box">
+                        <img class="gou" :src="gou">
+                        </p>
+                        <p class="lable_text">设置重复事件</p>
+                    </div>
+                    </div>
+                </div>
+                <div class="popup_item">
+                    <div class="popup_item">
+                    <em class="lable">提醒：</em>
+                    <div class="check-item">
+                        <p class="check-box">
+                        <img class="gou" :src="gou">
+                        </p>
+                        <select name="warnTime" id="warnTime">
+                        <option value="1">不提醒</option>
+                        <option value="2">前一天</option>
+                        <option value="3">同一天</option>
+                        <option value="4">指定时间</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                <div class="popup_item">
+                    <div class="popup_item">
+                    <em class="lable">事务类型：</em>
+                    <div class="check-item">
+                        <p class="check-box">
+                        <img class="gou" :src="gou">
+                        </p>
+                        <el-radio v-model="radio" label="1">个人</el-radio>
+                        <el-radio v-model="radio" label="2">工作</el-radio>
+                    </div>
+                    </div>
+                </div>
+                <div class="popup_item">
+                    <p class="popup_item">
+                    <em class="lable">地址：</em>
+                    <input type="text"  class="address_input popup_input ">
+                    </p>
+                </div>
+                <div class="popup_item">
+                    <p class="popup_item">
+                    <em class="lable">备注：</em>
+                    <textarea type="text"  class="others_input popup_input "></textarea>
+                    </p>
+                </div>
+            </div>
+            <div class="footer">
+                <div style="visibility:hidden" class="redact"></div>
+                <div>
+                    <p @click="sure()" class="sure">确定</p>
+                    <p class="cancel">取消</p>
+                </div>
+            </div>
+        </div>
+        <div v-if="showAll==true" class="popup_warp_all">
+            <div class="top">
+                <p class="title">新建事件</p>
+                <p @click="closeDilog(2)" class="delete_warp">
+                    <img :src="del1" >
+                </p>
+                <!-- <p class="del_warp">
+                    <img :src="del" >
+                </p> -->
+            </div>
+            <div class="popup_content ">
+                <div class="popup_item">
+                    <input type="text" v-model="value2" placeholder="接下来，你有什么安排？" class="popup_input">
+                </div>
+                <div class="popup_item">
+                    <p class="popup_item">
+                    <em class="lable">时间：</em>
+                    <em class="add_time">{{addEventTime}}</em>
+                    </p>
+                </div>
+                <div class="popup_item">
+                    <div class="popup_item">
+                    <em class="lable">提醒：</em>
+                    <div class="check-item">
+                        <p @click="check2()" class="check-box">
+                            <img v-if="check" class="gou" :src="gou">
+                        </p>
+                        <select v-model="myVal2" name="warnTime" id="warnTime">
+                            <option v-for="(item,index) in warnTime" :key="index" :value="item.value">{{item.content}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="footer">
+                <div @click="redact()" class="redact">完整编辑...</div>
+                <div>
+                    <p @click="sure()" class="sure">确定</p>
+                    <p class="cancel">取消</p>
+                </div>
+            </div>
+        </div>
     </div>
-   
 </template>
 <script>
 const add = require("@/assets/images/add.png");
@@ -62,6 +244,21 @@ var f = length => Array.from({length}).map((v, k) => k);
 export default {
     data(){
         return{
+            value2:'',
+            myVal2:1,
+            check:false,
+            warnTime:[
+                    { value:1,content:'不提醒'},
+                    { value:2,content:'前一天'},
+                    { value:3,content:'同一天'},
+                    { value:4,content:'指定时间'},
+                ],
+            input1:'',//事件描述
+            startDate:'',
+            allTimeShow:false,
+            endTimeShow:false,
+            radio:'1',
+
             data:[],
             popupVisible:true, 
             set:set,
@@ -81,7 +278,7 @@ export default {
             monthArr:[31,29,31,30,31,30,31,31,30,31,30,31],
             leapMonth:[31,28,31,30,31,30,31,31,30,31,30,31],
             warnArr:[
-                {time:'',content:''},
+                {time:'2019年9月25日 星期三',content:'2'},
                 {time:'',content:''},
                 {time:'',content:''},
                 {time:'',content:''},
@@ -128,6 +325,27 @@ export default {
         this.data=arr
     },
     methods: {
+         redact(){
+                this.showAll=false
+                this.dilogShow=true
+            },
+            sure(){
+                console.log(this.myVal2,this.value2,this.check)
+                this.$message({
+                    showClose: true,
+                    message: '添加成功',
+                    type: 'success'
+                });
+            },
+        check2(){
+                this.check=!this.check
+            },
+         allTimeShowBtn(){
+                this.allTimeShow=!this.allTimeShow
+            },
+            endTimeShowBtn(){
+                this.endTimeShow=!this.endTimeShow
+            },
         changeTime(time){
             var d = new Date(time); 
             var datetime=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
@@ -144,11 +362,18 @@ export default {
             console.log('touchstart')
         },
         showPopup: function(){
-            this.dilogShow=true
+            let date =new Date()
+                this.showAll=true
+                this.addEventTime=date.format("yyyy年M月dd日 E ")
         },
-        closeDilog(){
-            this.dilogShow=false
-        },
+        closeDilog(a){
+                if(a==1){
+                    this.dilogShow=false
+                }else{
+                    this.showAll=false
+                }
+                
+            },
         go(url) {      
             this.$router.push({
                 path: url
@@ -183,6 +408,10 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/assets/css/week.styl';
 @import '~@/assets/css/app.styl';
+.bgclass{
+    background:#5eb2e6;
+    color:#fff!important;
+}
 </style>
 
 

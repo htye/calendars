@@ -23,11 +23,11 @@
 
         <div class="right-warp">
             <div class="right-warp-left">
-                <div class="month " @click="go('/month')">月</div>
+                <div class="month active" @click="go('/month')">月</div>
                 <div class="week" @click="go('/week')">周</div>
                 <div class="warn" @click="go('/warn')">提醒</div>
             </div>
-            <div class="setBtn active" >
+            <div class="setBtn" @click="go('/set')">
                 <img :src="set" >
             </div>
         </div>
@@ -114,7 +114,7 @@
 <script>
 const add = require("@/assets/images/add.png");
 const phone = require("@/assets/images/phone.png");
-const set = require("@/assets/images/set1.png");
+const set = require("@/assets/images/set.png");
 const right = require("@/assets/images/right.png");
 const left = require("@/assets/images/left.png");
 const del = require("@/assets/images/del-icon1.png");

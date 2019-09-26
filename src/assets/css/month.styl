@@ -13,10 +13,10 @@
         margin-top: toRem(20)
         display: flex;
         flex-wrap: wrap
+        haight:100%;
     }
     .day_warp>li{
         font-size: toRem(20)
-        padding: toRem(4) toRem(6)
         box-sizing: border-box;
         width: 14.2%;
         height toRem(160);
@@ -52,8 +52,14 @@
         border-bottom: 1px solid #DADADA;
     }
     .date_content{
+        padding: toRem(2)
         display: flex;
         justify-content: space-between;
+        
+    }
+    .todayClass{
+        color #ffffff
+        background-color #288FCF 
     }
     .date_content>p:first-child{
         font-size toRem(16)
@@ -61,5 +67,10 @@
     .nongLi{
         font-size toRem(10)
         color: #B2B7BF
+        
+    }
+    .startTime,.endTime{
+        width:toRem(60)
+        margin-left: toRem(8)
     }
 }
